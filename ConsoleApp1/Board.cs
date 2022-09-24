@@ -38,14 +38,19 @@ public class Board
 
         return result;
     }
-
-    public Cell GetCell(string position)
+ 
+    public Cell? GetCell(string position)
     {
+        
+        if (IsValidPosition(position) is false)
+        {
+            return null;
+        }
         var match = _positionValidation.Match(position);
         return GetCell(match.Groups["letter"].Value, match.Groups["number"].Value);
     }
 
-    public Cell GetCell(string letter, string number)
+    private Cell GetCell(string letter, string number)
     {
         var startY = char.ToUpper(letter.First()) - 65;
         var startX = int.Parse(number) - 1;
@@ -120,7 +125,7 @@ public class Board
 
     private Regex _positionValidation = new Regex("^(?<letter>[A-J])(?<number>[1-9]|10)$");
 
-    public bool IsValidHit(string? position)
+    public bool IsValidPosition(string? position)
     {
         return _positionValidation.IsMatch(position);
     }

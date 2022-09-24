@@ -7,7 +7,7 @@ public class Ship
     public readonly string Name;
     public readonly int Size;
     
-    private Cell[] _cells;
+    public Cell[] Cells { get; private set; }
 
     public Ship(string name, int size)
     {
@@ -17,12 +17,12 @@ public class Ship
 
     public void SetPosition(Cell start, Cell end, Board board)
     {
-        _cells = board.GetCells(start, end);
-        foreach (var cell in _cells)
+        Cells = board.GetCells(start, end);
+        foreach (var cell in Cells)
         {
             cell.Ship = this;
         }
     }
 
-    public bool IsSunk => _cells.All(c => c.WasShot);
+    public bool IsSunk => Cells.All(c => c.WasShot);
 }

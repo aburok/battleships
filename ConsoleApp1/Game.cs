@@ -36,7 +36,7 @@ public class Game
         {
             Console.WriteLine("Provide shot position: (e.g. A4)");
             position = Console.ReadLine();
-            if (_enemyBoard.IsValidHit(position))
+            if (_enemyBoard.IsValidPosition(position))
             {
                 break;
             }
@@ -54,7 +54,7 @@ public class Game
         
         if (_enemyBoard.IsWin())
         {
-            Console.WriteLine("You won!");
+            Console.WriteLine("You won!"); 
             return true;
         }
 
